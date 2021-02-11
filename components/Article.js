@@ -86,14 +86,62 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Professional Raver',
+    date: 'The first beep boop',
+    firstParagraph: `Hey you need some Vicks??? No, how bout water?`,
+
+    secondParagraph: `*fan clacks* *whistles blowing* *untz untz* Uhhu.. uhhu.. HUMMUMMMUMMUMMM *AYYYYYYY OHHHHHHH AAAAAAYYYY OOOOHHHHHH`,
+
+    thirdParagraph: `I just wanna tell you all that I love you so much, let's do this till the day we die, YAAAA thats the energy!! This set is giving me LIFE, straight FIYYAA`
   }
 ];
+    const articles = document.querySelector('.articles');
 
-/*
+    function articleMaker (article) {
+      const art = document.createElement('div');
+      const artTitle = document.createElement('h2');
+      const artDate = document.createElement('p');
+      const artP1 = document.createElement('p');
+      const artP2 = document.createElement('p');
+      const artP3 = document.createElement('p');
+      const expand = document.createElement('span');
+
+      art.appendChild(artTitle);
+      art.appendChild(artDate);
+      art.appendChild(artP1);
+      art.appendChild(artP2);
+      art.appendChild(artP3);
+      art.appendChild(expand);
+
+      art.classList.add('article');
+      artDate.classList.add('date');
+      expand.classList.add('expandButton');
+
+      artTitle.textContent = article.title;
+      artP1.textContent = article.firstParagraph;
+      artP2.textContent = article.secondParagraph;
+      artP3.textContent = article.thirdParagraph;
+      expand.textContent = '+';
+
+
+      expand.addEventListener('click', function() {
+        art.classList.toggle('article-open');
+      });
+      return art
+    }
+    data.forEach(articleObj => {
+      articles.appendChild(articleMaker(articleObj))
+    });
+      
+
+
+    /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
-
+    
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -102,7 +150,7 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
+ 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
